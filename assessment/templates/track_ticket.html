@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service Ticket Status</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .ticket-card {
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .ticket-card h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #333;
+            border-bottom: 2px solid #007BFF;
+            padding-bottom: 10px;
+        }
+        .ticket-card p {
+            margin: 10px 0;
+            font-size: 16px;
+            color: #555;
+        }
+        .ticket-card p span {
+            font-weight: bold;
+            color: #333;
+        }
+        .status {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 4px;
+            color: #fff;
+            font-size: 14px;
+        }
+        .status.open {
+            background-color: #28a745;
+        }
+        .status.pending {
+            background-color: #ffc107;
+        }
+        .status.closed {
+            background-color: #dc3545;
+        }
+    </style>
+</head>
+<body>
+    <div class="ticket-card">
+        <h1>Service Ticket Status</h1>
+        <p><span>Category:</span> {{ ticket.category }}</p>
+        <p><span>Description:</span> {{ ticket.description }}</p>
+        <p><span>Status:</span> 
+            <span class="status {{ ticket.status|lower }}">{{ ticket.status }}</span>
+        </p>
+        <p><span>Created At:</span> {{ ticket.created_at }}</p>
+        <p><span>Completed At:</span> {{ ticket.completed_at }}</p>
+    </div>
+</body>
+</html>

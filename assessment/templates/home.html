@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <style>
+        /* Add Home Page Specific Styling */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f9;
+        }
+
+        .home-container {
+            text-align: center;
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .home-container h1 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #333;
+        }
+
+        .home-container .button-group {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .home-container .button-group a,
+        .home-container .button-group form button {
+            text-decoration: none;
+            color: #fff;
+            background-color: #007BFF;
+            padding: 12px 20px;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .home-container .button-group a:hover,
+        .home-container .button-group form button:hover {
+            background-color: #0056b3;
+        }
+
+        .home-container .button-group form {
+            margin: 0;
+        }
+
+        .home-container .button-group form input[type="number"] {
+            padding: 10px;
+            font-size: 16px;
+            margin-bottom: 10px;
+            width: calc(100% - 20px);
+            border: 1px solid #cccccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .home-container .button-group form input[type="number"]:focus {
+            outline: none;
+            border-color: #007BFF;
+            background-color: #ffffff;
+            box-shadow: 0 0 4px rgba(0, 123, 255, 0.3);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="home-container">
+        <h1>Customer Services</h1>
+        <div class="button-group">
+            <p>Create a ticket</p>
+            <a href="{% url 'submit_ticket' %}">Submit a Ticket</a>
+
+            <p>Track Your request</p>
+            <form method="GET" onsubmit="redirectToTicket(event)">
+                <input type="number" id="ticketNumber" name="ticket_number" placeholder="Enter Ticket Number" required>
+                <button type="submit">Review a Ticket</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function redirectToTicket(event) {
+            event.preventDefault(); // Prevent the form's default submission
+            const ticketNumber = document.getElementById('ticketNumber').value; // Get the ticket number
+            if (ticketNumber) {
+                window.location.href = `/tickets/track/${ticketNumber}/`; // Redirect to the desired URL
+            }
+        }
+    </script>
+</body>
+
+</html>
